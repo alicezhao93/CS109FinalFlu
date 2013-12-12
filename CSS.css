@@ -147,6 +147,11 @@ overflow: hidden;
 text-align: justify;
 } 
 
+#slide1{
+top-margin:0;
+bottom-margin:0;
+}
+
 .smallheader
 {
 margin: 0px auto;
