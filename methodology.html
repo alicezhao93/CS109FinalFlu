@@ -1,59 +1,239 @@
-<html>
-<head>
-<title>The Flu that Flew: A Final Project</title>
-<link rel="stylesheet" href="css/CSS.css">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<body>
-<div id="container">
+    <title>The Flu that Flew: A Final Project</title>
 
-<div class="header">
-<div class="subtitle">Data Science</div>
-The Flu that Flew: A Final Project<br>
-</div>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
 
-<div class="subtitle">- Kevin Eskici, Angela Fan, Mark Krass, Alice Zhao -</div>
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+    <script type="text/javascript"
+  src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">CS 109 Final - The Flu that Flew</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+          <h1>Project Description</h1>
+          <p>The goal of this project is to model a city's flu mortality rate through
+infection rate and flight data from city to city. We hope that given
+the number of people who travel in and out of a city and the past
+week's flu mortality rate per city, we are accurately able to predict
+the number of people who will die for the current week by estimating
+the probability of dying if infected, the probability of being cured
+after infected and the probability of getting infected.
+We were particularly motivated by both the prevelance of flu but also
+the potential to produce a more statistically involved project that
+could have tangible impacts. We imagine, if accurate, it could
+potentially lead to the CDC reevaluating its vaccination distribution,
+choosing to give more vaccinations at a new time to a different
+city.</p>
+	<p><b>We, as a team, cycled through the Data Science
+    Process of (1) asking an interesting question, (2) getting the
+    data, (3) exploring the data, (4) modeling the data and (5)
+    visualizing the results. Our original idea motivated by the flu
+    data has transformed throughout this process with different
+    models, different data and different languages. We truly engaged
+    with the data science process</b></p>
+      </div>
+      <hr>
+      <div class = "row">
+      	<h2>Our Data</h2>
+
+      	<p>At the beginning, we collected and cleaned 15 years of weekly flu data combined with monthly
+flight data among 204 cities. We scrapped for the nearest
+international airport to each city and land area per city. We then joined the 3 datasets from
+the CDC for flu, the Census data for population, the flight data and
+finally land area and nearest airport. </p>
+      </div>
+
+      <div class="row">
+      	<h2>Model</h2>
+      	<p>After aggregating, cleaning and organizing the data, we then planned
+to perform hierarchical
+Bayesian modeling like a Poisson Regression to update the most basic
+model of an isolated city at time $0, 1, \ldots, t, t+1, \ldots $ with
+our data. We
+then would expand to a more complicated model that includes a network of
+flights that move both healthy and infected people around to different
+cities. Finally we would test our model on a
+dataset of 2 years to see if our model is a viable
+option for infection and mortality from the flu. <b>After
+  discovering limitations with languages and more interesting insights
+  from the data itself, we changed our plan of attack multiple times</b></p>
+      </div>
+
+      <div class="row">
+      	<h2>First Model - A Theoretical Overview</h2>
+      	<p>Our overall model can be divided into 2 sub-models. (1) Basic
+model of describing each isolated city at a certain time without any
+flight interaction. (2) More involved model to include people
+traveling from city to city by plane.
+In each model, we can only
+observe the number of people who died each week and not the number of
+people infected by the flu each week. The number of infected people is
+considered our latent variable. Thus we assume that there is some
+``probability of conversion'' from infected to dead, $\beta_{d}$ or
+$\beta_{death}$. By setting the priors of these $\beta$s to Normal, we
+will then transform them using $\frac{1}{1 + e^{-\beta}}$ to transform
+  the value into the correct range. We then finally run MCMC to pick
+  samples that will eventually converge. A basic graph and model is described below: 
+
+  	<ol>
+  		<li>Basic Model
+$I_{j,t} = Pois(\beta_{i}(I_{j, t-1} * N)) + I_{j,t-1} - Pois(I_{j, t-1}, \beta_{c}) <br>
+= Pois(\beta_{i} * (I_{j,t-1} * N) + I_{j,t-1}- (I_{j,t-1}* \beta_{c})) <br>
+C_{j,t} \sim Pois((I_{j,t}*\beta_d))$</li>
+		<li>$\beta_i$ - coefficient for infection- the probability that
+  someone exposed to the flu will become infected</li>
+<li> $I_{j, t-1} * N$- the number of interactions between sick and all
+  people for a certain city j</li>
+<li>$ I_{j, t-1}$ - ``holdovers''- the number of people who were sick
+  last week and still sick this week</li>
+<li> $\beta_c$ - coefficient for curing- the probability that someone
+  who is infected will be cured (no infection). </li>
+<li> $C_{j,t}$ - the nmber of people who died in city j at time t
+<li> $\beta_d$ - coefficient for death - the probability that someone
+  who is sick will die from the flu</li>
+  	</ol>
+
+A complete model is given by:
+	<ol>
+		<li>
+$I_{j} = Pois(\beta_{i}(I_{j, t-1} * N)) + I_{j,t-1} - Pois(I_{j,
+  t-1}, \beta_{c}) + F_j$ <br>
+$F = \sum f_{in_j} - \sum f_{out_j}$ where $f \sim Mult(n_k, \vec{p})$</li>
+		<li>$F_j$ - incorporation of flight
+  data/movement of people for the city j</li>
+  		<li>$f_{in_j}$ is the number of people flying into city j and $f_{out_j}$ is the number of people leaving city j.</li>
+  		<li>$n_k$ - the number of people flying out of the city k</li>
+  		<li>$\hat{p}$ is the probability vector where element $p_i$ is the
+  probability of flying out of city j and being sick. We assume that
+  the probability of traveling and the probability of being sick is
+  independent. </li>
+	</ol>
 
 
-<div class="navcontainer">
 
-<li><a href="index.html">HOME</a></li>
-<li class="navcurrent"><a href="methodology.html">METHODOLOGY</a></li>
-<li><a href="code.html">CODE</a></li>
-<li><a href="gallery.html">GALLERY</a></li>
-</ul>
-</div>
+	</p>
+      </div>
 
-<div class="smallheader">
-How can we predict Influenza deaths?
-<div class="heading">
-<br>
+<hr>
+
+      <div class="row">
+      	<h2>Second Model - PyMC</h2>
+      	<p>Because PyMC has great MCMC and Bayesian updating capabilities, we
+decide to code our involved model in PyMC. After exploring and
+learning the power of PyMC, we realized that it did not allow us to
+model the observed data (number of deaths) as a convolution of other
+distributions (sum of 2 Poissons and an integer). We did however
+change our model to assume that the death coefficient $\beta_d$ =
+0.0007 from Public Health Literature (noted in our code) so we can
+actually "observe" the number of infected. This eliminated the
+complexity of a hierarchical model with the latent variable of number
+of infected. Similarly, we only studied 1 city at every timestep
+(every month for 15 years) to test if our model works. We were able to
+sample from a posterior that PyMC generated and visualized the number of infected people from our inconclusive MCMC 
+$\beta_{infected}$ and $\beta_{cured}$ from time step to time
+step. You can see the visualizations in our Gallery and our Code in
+our Process Book. 
+Spending approximately a week on PyMC, we decided with the help of our TF Alex
+(best TF ever) that RStan and PyStan could be easier to model a custom
+distribution. </p>
+      </div>
+<hr>
+
+      <div class="row">
+      	<h2>Third Model - RStan and PyStan</h2>
+      	<p>As most of the team members had some experience and exposure to R, we
+believed that R, specifically Stan would be more suited for our
+needs. Spending approximately 2 days on RStan, we realized that it did
+not allow for latent discrete random variables (specifically our
+"holdovers", "cured", "newly infected" variables) that we needed to feed into our observed
+discrete random variable. As such, continuing with Stan, we decide to
+change our model again to eliminate the use of a latent variable while
+still maintaining a specific rate. For 1 city, the model looks like: \[infected_t
+- infected_{t-1} \sim Poisson(infected_{t-1} * Population_{density}
+* \beta_i) - Pois(infected_{t-1} * \beta_c)\] While we know that
+adding two Poissons, we can just add their $\lambda$s, the difference
+between 2 Poissons is actually a \textbf{Skellam distribution}. We
+then looked to remodel our posterior as a Skellam
+distribution. Finally however, we realized that Stan doesn't have the
+capability of discrete unobserved random variables (cured, infected
+etc) so we return back to Python with the idea of "Grid Sampling"
+done in the labs.</p>
+      </div>
+<hr>
+
+      <div class="row">
+      	<h2>Fourth Model - Grids</h2>
+      	<p>In order to estimate our parameters $\beta_i$ and $\beta_c$, we
+revised our modeling assumptions to take advantage of the built-in
+skellam PMF function in scipy. Rather than modeling the number of
+people infected in any city at any given time, we use the Skellam
+Distribution to model the difference between new infections and cured
+people. We then add this output to the previous week's predicted infection.
+
+In order to estimate parameters, we used the PMF function to estimate the probability of observing our empirical data across a grid approximately describing the parameter space. In other words, we took lots and lots of points from the area in which our parameters could fall and calculated the probability of observing our data given each pair. 
+
+The heat map of these probabilities is shown below
+<b>INCLUDE HEAT MAP</b>
+
+From this grid, we can estimate approximate marginal distributions
+using a kernel density plot, and we could sample directly from an
+approximation to the posterior distribution.
+
+<b>Clearly just as the course advised, we have iterated through
+  the Data Science Process to revise our models after understanding
+  the languages and explorating our data further.</b></p>
+      </div>
+      <hr>
+
+      <footer>
+        <p>Brought to you by: Kevin Eskici, Angela Fan, Mark Krass, and Alice Zhao </p>
+      </footer>
+    </div> <!-- /container -->
 
 
-</div>
-
-<img src="model1.png" style="float:center" height="35%" width="99%">
-<img src="model2.png" style="float:center" height="5%" width="65%">
-<img src="model3.png" style="float:center" height="60%" width="99%">
-<img src="example5.png">
-<img src="example6.png">
-</div>
-<HR WIDTH=60%>
-<br>
-<div class="footer" align = "center">
-<div class="subheading"><b>Interested in learning more about our project?</b></div><br>
-
-Please click <a href="index.html">here</a> for a screencast video explanation of our project.
-Please click <a href="code.html">here</a> for a link to the code we used to create this project.
-Please click <a href="gallery.html">here</a> for images of our results.
-</div>
-
-<div class="subheading" align="center">
-This website was inspired by: http://harvardchinacare.org/benefit2012
-</div>
-
-</div>
-The Flu that Flew
-<br>
-
-</body>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+  </body>
+</html>
