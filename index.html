@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>The Flu that Flew: A Final Project</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -36,28 +36,52 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">CS 109 Final - The Flew that Flew</a>
         </div>
-        <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
       </div>
     </div>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+        <h1>The Flu That Flew</h1>
+        <div class="col-md-6">
+        <p id='main-description'>The goal of this project was to predict the flu mortality rate any given city in the United States would experience,
+given data about people's movements between cities (commercial flights), data about the population density of each city (Census Bureau),
+and data about past flu mortality (from the CDC). By integrating these datasets into a model, we hope to see through the noise and detect the signal that is true
+flu mortality rate, as illustrated in the diagram below.</p>
+        <p><a class="btn btn-primary btn-lg" role="button">See a Screencast here &raquo;</a></p>
+    	</div>
+    	<div class="col-md-6">
+    		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+			    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			  </ol>
+
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner">
+			    <div class="item active">
+			      <img src="..." alt="...">
+			      <div class="carousel-caption">
+			        ...
+			      </div>
+			    </div>
+			    ...
+			  </div>
+
+			  <!-- Controls -->
+			  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left"></span>
+			  </a>
+			  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right"></span>
+			  </a>
+			</div>
+    		<img id="pictureForOverview" width="100%" src="pics/example1.png" />
+    	</div>
       </div>
     </div>
 
@@ -65,18 +89,22 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <h2>Methodology</h2>
+          <p>We chose to undertake this project because we envisioned potential tangible impacts. For instance, our project could
+contribute to more informed targeted vaccine distribution. Below, you can see historical data of CDC distributed vaccine
+quantities in the millions per month. Based on our model, MORE INFORMATION HERE, GET BACK TO THIS PLEASE</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <h2>Implications</h2>
+          <p>We chose to undertake this project because we envisioned potential tangible impacts. For instance, our project could
+contribute to more informed targeted vaccine distribution. Below, you can see historical data of CDC distributed vaccine
+quantities in the millions per month. Based on our model, MORE INFORMATION HERE, GET BACK TO THIS PLEASE</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
        </div>
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <h2>Code</h2>
+          <p>So now that you have learned about our project, take a deep dive into our code and see how we utilized the power of Python, PyMC, Numpy, Stan, Matplotlib, and Pandas to generate these amazing results. </p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
       </div>
@@ -84,7 +112,7 @@
       <hr>
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>Brought to you by: Kevin Eskici, Angela Fan, Mark Krass, and Alice Zhao </p>
       </footer>
     </div> <!-- /container -->
 
