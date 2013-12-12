@@ -1,70 +1,98 @@
-<html>
-<head>
-<title>The Flu that Flew: A Final Project</title>
-<link rel="stylesheet" href="CSS.css">
-<script type="text/javascript" src="be_slide.js"></script></head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<body>
-<div id="container">
+    <title>Jumbotron Template for Bootstrap</title>
 
-<div class="header">
-<div class="subtitle">Data Science</div>
-The Flu that Flew: A Final Project<br>
-</div>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
 
-<div class="subtitle">- Kevin Eskici, Angela Fan, Mark Krass, Alice Zhao -</div>
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron.css" rel="stylesheet">
 
-<div class="navcontainer">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
-<li class="navcurrent"><a href="index.html">HOME</a></li>
-<li><a href="methodology.html">METHODOLOGY</a></li>
-<li><a href="code.html">CODE</a></li>
-<li><a href="gallery.html">GALLERY</a></li>
-</div>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+    </div> <!-- /container -->
 
 
-<div id="slideshow">
-<img id="slide" src="pics/example1.jpg">
-</div>
-<div class="smallheader">
-About
-<div class="heading">
-<br>
-The goal of this project was to predict the flu mortality rate any given city in the United States would experience,
-given data about people's movements between cities (commercial flights), data about the population density of each city (Census Bureau),
-and data about past flu mortality (from the CDC). By integrating these datasets into a model, we hope to see through the noise and detect the signal that is true
-flu mortality rate, as illustrated in the diagram below.
-<br>
-<img src="example4.png"><HR WIDTH=60%>
-
-
-</div>
-
-<div class="smallheader">
-Implications
-<div class="heading">
-<br>
-We chose to undertake this project because we envisioned potential tangible impacts. For instance, our project could
-contribute to more informed targeted vaccine distribution. Below, you can see historical data of CDC distributed vaccine
-quantities in the millions per month. Based on our model, MORE INFORMATION HERE, GET BACK TO THIS PLEASE
-</div>
-<br>
-<iframe width="100%" height="450" src="http://jsfiddle.net/f67eE/8/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-<div class="footer">
-<br>
-<HR WIDTH=60%>
-<div class="subheading"><b>Interested in learning more about our project?</b></div>
-Please click <a href="index.html">here</a> for a screencast video explanation of our project.
-Please click <a href="code.html">here</a> for a link to the code we used to create this project.
-Please click <a href="gallery.html">here</a> for images of our results.
-</div>
-<div class="subheading">
-This website was inspired by: http://harvardchinacare.org/benefit2012
-</div>
-
-</div>
-The Flu that Flew
-<br>
-
-</body>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
